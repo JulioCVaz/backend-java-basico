@@ -3,7 +3,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.awt.List;
 import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -11,12 +13,13 @@ import java.util.Scanner;
 public class App 
 {
 	public void inserir(String texto) throws IOException {
-		//Gravação
-		 FileWriter arq = new FileWriter("d:\\aulaetec.txt", true); // esse true é um outro parametro para nao reescrever
+		//Inserir
+		 FileWriter arq = new FileWriter("d:\\git.txt", true); // esse true é um outro parametro para nao reescrever
 		 PrintWriter gravarArq = new PrintWriter(arq);
 		 
-		 gravarArq.println(texto); 
-
+		 for(int i=0; i <= 10; i++) {
+			 gravarArq.println(texto); 			 
+		 }
 		 arq.close();
 	}
 	
@@ -26,7 +29,7 @@ public class App
 		boolean wpt = true;
 		
 		//Leitura
-		 FileReader arqleitura = new FileReader("d:\\aulaetec.txt");
+		 FileReader arqleitura = new FileReader("d:\\git.txt");
 		 BufferedReader lerArq = new BufferedReader(arqleitura);
 	 
 	     String linha = lerArq.readLine(); 
@@ -35,26 +38,7 @@ public class App
 	     while (linha != null) {
 	    	 i++;
 	    	 if(linha.contains(texto)) {
-	    		 System.out.println("linha: " + i + " conteúdo: " + linha);
-	    		 
-	    		 /*Scanner response = new Scanner(System.in);
-	    		 System.out.println("Você deseja atualizar ou deletar ? (1 - att 2 - delete) : ");
-	    		 resp = response.next();
-	    		 
-	    		 if(resp.equals("1")) {
-	    			 Scanner att = new Scanner(System.in);
-	    			 System.out.println("Digite o novo nome: ");
-	    			 newname = att.next();
-	    			 linha.replace(linha,newname);
-	    			 
-	    		 }else if(resp.equals("2")) {
-	    			 linha.replace(linha,"-");
-	    		 }else {
-	    			 System.out.println("Valor invalido !");
-	    		 }
-	    		 
-	    		 */
-	    		 
+	    		 System.out.println("linha: " + i + " conteúdo: " + linha);		 
 	    	 } 
 	    	 linha = lerArq.readLine();
 	     }
@@ -64,42 +48,50 @@ public class App
 	
 	
 	public void atualizar(String name, String newname) throws IOException{
-		
-		FileWriter arqgravar = new FileWriter("d:\\aulaetec.txt");
-		
-		FileReader arq = new FileReader("d:\\aulaetec.txt");
-		
-		PrintWriter gravarArq = new PrintWriter(arqgravar, true);
-		
+		//Atualizar
+		FileReader arq = new FileReader("d:\\git.txt");
 		BufferedReader lerArq = new BufferedReader(arq);
 		
+		
 		String linha = lerArq.readLine(); 
+		
 		int i = 0;
 		String oldName = "";
 		
+		ArrayList<String> list = new ArrayList();
+		
 		while(linha != null) {
 			i++;
-			
 			if(linha.equals(name)) {
-				linha = oldName + newname + "\n";
-				gravarArq.println(linha);
-				System.out.println("Encontrei");
+				list.add(linha);
+				System.out.println(list);
+				linha = lerArq.readLine();
 			}else {
-				System.out.println("diferente");
+				System.out.println("Nenhum valor encontrado!");
 			}
-			linha = lerArq.readLine();
+		}
+		
+		
+		
+		FileWriter arqgravar = new FileWriter("d:\\git.txt");
+		PrintWriter gravarArq = new PrintWriter(arqgravar);
+		
+		for(int y = 0; y < list.size(); y++) {
+			
+			list.set(y, newname);
+			
+			gravarArq.println(list.get(y));
 			
 		}
-		arq.close();
-		
+		arqgravar.close();
+
 	}
 
 	public static void main(String args[]) throws Exception {
 		App arq = new App();
-		//arq.inserir("Jeferson");
-		//arq.inserir("Teste");
-		arq.atualizar("Teste", "Agora vai");
-		//arq.leitura("Jeferson Roberto de Lima");
+		//arq.inserir("Texto");
+		//arq.leitura("Texto");
+		arq.atualizar("Texto", "Agora vai");
 	}
 	
 }
