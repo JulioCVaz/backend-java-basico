@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="aulareader/src/main/java/|aulafilereader/src/test/java/|aulareader/src/test/java/|aulafilereader/src/main/java/|testemaven/src/main/java/|testemaven/src/test/java/" kind="src" path=""/>
+	<classpathentry kind="src" path="aulafilereader/src/main/java"/>
+	<classpathentry kind="src" path="aulafilereader/src/test/java"/>
+	<classpathentry kind="src" path="aulareader/src/main/java"/>
+	<classpathentry kind="src" path="aulareader/src/test/java"/>
+	<classpathentry kind="src" path="testemaven/src/main/java"/>
+	<classpathentry kind="src" path="testemaven/src/test/java"/>
+	<classpathentry kind="output" path="aulareader/target/classes"/>
+</classpath>
